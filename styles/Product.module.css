@@ -1,0 +1,111 @@
+._container {
+    transition: all 0.1s;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    height: 250px;
+    width: 450px;
+    overflow: hidden;
+  
+    background: ghostwhite;
+    opacity: 0.9;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 6px;
+  
+    background: url("https://images.pexels.com/photos/5117638/pexels-photo-5117638.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-size: cover;
+    background-position: center;
+  
+    margin: 4px;
+    opacity: 0.85;
+  
+    position: relative;
+  }
+  
+  ._container:hover {
+    transition: all 0.3s;
+    opacity: 1;
+  
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  }
+  
+  ._filter {
+    transition: all 0.1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  
+    padding-left: 10px;
+  
+    width: 100%;
+    height: 100%;
+  
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(
+      35deg,
+      rgba(0, 0, 0, 0.7959384437368697) 0%,
+      rgba(255, 255, 255, 0) 74%
+    );
+    background: -webkit-linear-gradient(
+      35deg,
+      rgba(0, 0, 0, 0.7959384437368697) 0%,
+      rgba(255, 255, 255, 0) 74%
+    );
+    background: linear-gradient(
+      35deg,
+      rgba(0, 0, 0, 0.7959384437368697) 0%,
+      rgba(255, 255, 255, 0) 74%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ffffff",GradientType=1);
+  }
+  
+  ._details {
+    display: flex;
+    flex-direction: row;
+  
+    width: 170px;
+    height: 70px;
+  
+    margin: 10px;
+    position: relative;
+    top: 25px;
+  
+    font-size: 15px;
+    font-weight: normal;
+    color: white;
+  }
+  
+  ._details2 {
+    transition: all 0.3s;
+  
+    margin: 0px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  
+    font-size: 15px;
+    font-weight: bold;
+    color: crimson;
+  
+    opacity: 0.4;
+  }
+  
+  ._details2Text {
+    margin: 0px;
+    position: absolute;
+    left: 10px;
+    bottom: 55px;
+    color: orangered;
+    font-size: 20px;
+  }
+  
+  ._details2:hover {
+    transition: all 0.8s;
+    opacity: 1;
+  }
+
+@media (max-width: 600px) {
+}
