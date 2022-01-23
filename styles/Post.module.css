@@ -70,16 +70,11 @@
 }
 
 ._displayImage img {
-  /* min-width: 100%; */
+  min-width: 100%;
   min-height: 100%;
-  max-width: 150%;
+  max-width: 100%;
 
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  object-fit: cover;
 }
 
 ._titleTexts {
@@ -112,12 +107,7 @@
   min-height: 100%;
   max-width: 100%;
 
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  object-fit: cover;
 }
 
 ._icons {
