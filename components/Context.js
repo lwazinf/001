@@ -4,31 +4,14 @@ export const AppContext = createContext({});
 
 export function ContextWrapper(props) {
 
-    const [modalState, setmodalState] = useState(true);
-    const [runModal, setRunner] = useState(false);
-
-    function loadModal() {
-      return (
-        setRunner(true)
-          // setTimeout(function () {
-          // }, 500)
-      );
-  }
-
-  function killModal() {
-      return (
-          () => {
-              setRunner(false);
-              setTimeout(function () {
-                  setmodalState(false)
-              }, 200)
-          }
-      );
-  }
-
+    const [postImage, setPostImage] = useState("");
+    const [tray, setTray] = useState(true);
+    const [postDP, setPostDP] = useState("");
+    const [postUser, setPostUser] = useState("");
+    const [postQuote, setPostQuote] = useState("");
     
     return (
-      <AppContext.Provider value={{ modalState, setmodalState, runModal, setRunner, loadModal, killModal }}>
+      <AppContext.Provider value={{ postImage, setPostImage, tray, setTray, postDP, setPostDP, postUser, setPostUser, postQuote, setPostQuote }}>
         {props.children}
       </AppContext.Provider>
     );
