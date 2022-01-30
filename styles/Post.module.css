@@ -9,7 +9,6 @@
   width: 452px;
   overflow: hidden;
 
-  background: ghostwhite;
   opacity: 1;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 6px;
@@ -21,15 +20,13 @@
   transition: all 0.3s;
 
   opacity: 1;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 ._top {
   width: 100%;
   height: 350px;
 
-  background: white;
+  background: ghostwhite;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 1px;
@@ -85,13 +82,17 @@
 }
 
 ._media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 430px;
   height: 250px;
 
   margin-left: auto;
   margin-right: auto;
 
-  background: rgb(235, 235, 235);
+  background: rgb(235, 235, 235, 0.4);
   border-radius: 6px;
 
   /* background: url("https://images.pexels.com/photos/4061385/pexels-photo-4061385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"); */
@@ -103,11 +104,34 @@
 }
 
 ._media img {
+  transition: all 0.8;
   min-width: 100%;
   min-height: 100%;
   max-width: 100%;
 
   object-fit: cover;
+}
+
+._imgText {
+  cursor: default;
+  /* background-color: red; */
+
+  width: 80%;
+  height: 100%; 
+
+  text-align: center;
+
+  position: absolute; 
+  top: 0px;
+
+  color: rgb(84, 84, 84);
+  font-size: 15px;
+  font-weight: 800;
+
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
 }
 
 ._icons {
@@ -151,6 +175,11 @@
 }
 
 ._tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
   transition: all 0.1s;
 
   width: 80px;
@@ -166,6 +195,12 @@
 
   background-size: cover;
   background-position: center;
+
+  color: rgb(167, 167, 167);
+  font-size: 12px;
+  text-align: center;
+
+  cursor: pointer;
 }
 
 ._tag:hover {
@@ -174,10 +209,13 @@
   margin: 4.5px;
   width: 79px;
   height: 24px;
+
+  background: lightcyan;
 }
 
 ._tagPlus {
   transition: all 0.1s;
+  cursor: pointer;
 
   width: 25px;
   height: 25px;
@@ -201,6 +239,8 @@
 
   opacity: 1;
   margin: 4.5px;
+
+  color: lightcyan;
 }
 
 @media (max-width: 600px) {
