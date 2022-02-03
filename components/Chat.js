@@ -88,21 +88,28 @@ function Chat() {
   }
   return (
     <div className={styles._blank}>
-      <div className={styles._tray} style={{ left: tray ? '405px' : '0px', background: formData.email.includes('@') ? 'crimson' : 'ghostwhite' }} onClick={() => {
+      <div className={styles._tray} style={{ left: tray ? '405px' : '0px', background: auth.currentUser ? 'crimson' : 'ghostwhite' }} onClick={() => {
         setTray(!tray)
         if (formData.email.includes('@')) {
           const auth = getAuth();
           signOut(auth).then(() => {
-            console.log('Sign-out successful.')
+            // console.log('Sign-out successful.')
+            console.log(auth.currentUser)
           }).catch((error) => {
             // An error happened.
           });
         }
       }}>
-        <FontAwesomeIcon icon={formData.email.includes('@') ? faCog : faUser} />
+        <FontAwesomeIcon icon={auth.currentUser ? faCog : faUser} />
       </div>
       <div className={styles._container} style={{ width: tray ? '402px' : '0px' }}>
         <div className={styles._formCase}>
+          {
+            auth.currentUser ?
+            <div>
+              {auth.currentUser}
+            </div>
+            :
           <form className={styles._form} onSubmit={onSubmit}>
             <input style={{ borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px', padding: '0px', margin: '0px', height: authType ? '0px' : '35px', opacity: authType ? '0' : '1', transition: 'all 0.4s', pointerEvents: authType ? 'none' : 'auto' }} type='text' className={styles._textInput} placeholder='Full Name' id='name' onChange={onChange} />
 
@@ -120,7 +127,7 @@ function Chat() {
                   <p style={{ padding: '0px', margin: '0px' }}>Need an account? </p>
                   <p style={{ fontSize: '13px', padding: '0px', margin: '0px', color: 'blue', marginLeft: '5px', cursor: 'pointer', fontWeight: '500' }} onClick={() => {
                     setAuthType(!authType);
-
+                    console.log(auth.currentUser.email);
                   }}>Register</p>
                 </div>
                 :
@@ -131,8 +138,8 @@ function Chat() {
                   }}>Login</p>
                 </div>
             }
-            {/* { auth.user } */}
           </form>
+}
         </div>
       </div >
     </div >
