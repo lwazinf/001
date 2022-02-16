@@ -1,21 +1,32 @@
-import styles from '../styles/Post.module.css'
+import styles from '../styles/Facebook.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faCheckCircle, faShareSquare, faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 import React, { useContext, useState } from "react";
-import { AppContext } from "../components/Context";
+import { AppContext } from "./Context";
 
 import { ref, deleteObject, getStorage } from "firebase/storage";
-import { addDoc, collection, serverTimestamp, setDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, setDoc, doc, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-const Post = () => {
-  const { postImage, setPostQuote, postTags, setFullObject, fullObject, postToggle, setPostToggle, postDP, setPostImage, setPostDP, setPostUser, setPostTags } = useContext(AppContext);
-  const _postImage = "url(" + fullObject.url + ")";
-  let _tags = postTags;
+const Facebook = () => {
+  const { fullObject } = useContext(AppContext);
   const [signal, setSignal] = useState(true)
   const [fav, setFav] = useState(true)
-
+  const [data, setData] = useState([])
+  
+  if(Object.keys(fullObject).length > 0){
+    const docRef = doc(db, 'gridImages', fullObject.id)
+    getDoc(docRef)
+  .then((doc) => {
+    let x = []
+    Object.keys(doc.data().tags).forEach((key) => {
+      x.push(doc.data().tags[key]);
+    });
+    setData(x)
+  })
+  // console.log(data)
+}
 
   const storage = getStorage();
 
@@ -23,14 +34,14 @@ const Post = () => {
     <div className={styles._container} style={{
       backgroundSize: 'cover',
       backgroundPosition: 'bottom',
-      background: fullObject.url == '' ? 'red' : _postImage,
+      background: fullObject.url == '' ? 'red' : fullObject.url,
       transition: 'all 0.5s'
     }}>
 
       <div className={styles._top} style={{ position: 'relative', top: Object.keys(fullObject).length != 0 ? '0px' : '-360px', opacity: Object.keys(fullObject).length != 0 ? '1' : '0', transition: 'all 0.5s' }}>
         <div className={styles._title}>
           <div className={styles._displayImage} >
-            <img src={postDP} alt="" />
+            <img src={fullObject.dp} alt="" />
           </div>
           <div className={styles._titleTexts} >
             <p style={{ margin: '0px', padding: '0px', color: 'grey', fontWeight: 'bold', fontSize: '14px' }}>{fullObject.quote}</p>
@@ -39,17 +50,17 @@ const Post = () => {
           </div>
         </div>
         <div className={styles._media} onClick={() => {
-          setPostToggle(!postToggle);
+          setSignal(!signal);
         }} >
 
-          <div className={styles._imgText} alt="" style={{ opacity: postToggle ? "1.0" : '0.0', transition: postToggle ? 'all 0.4s' : 'all 0.2s' }}>
+          <div className={styles._imgText} alt="" style={{ opacity: signal ? "1.0" : '0.0', transition: 'all 0.2s' }}>
             <p>
               {fullObject.quoteMain}
             </p>
           </div>
 
-          <div style={{ opacity: postToggle ? '0.07' : "1.0", transition: postToggle ? 'all 0.8s' : 'all 0.2s' }} >
-            <img src={postImage} alt="" />
+          <div style={{ opacity: signal ? "0.05" : '1.0', transition: 'all 0.2s' }} >
+            <img src={fullObject.url} alt="" />
           </div>
         </div>
         <div className={styles._icons}>
@@ -70,14 +81,6 @@ const Post = () => {
               ref(storage, fullObject.url)
             ).then(async () => {
               await deleteDoc(doc(db, "gridImages", fullObject.id));
-
-              setPostImage('');
-              setPostDP('');
-              setPostUser('');
-              setPostQuote('');
-              setPostTags([]);
-              setFullObject({});
-              setPostToggle(false);
             }).catch((error) => {
               // Uh-oh, an error occurred!
             });
@@ -89,7 +92,7 @@ const Post = () => {
       </div>
       <div className={styles._bottom}>
         {
-          postTags.map((tag) => (
+          data.map((tag) => (
             <div key={tag.id} className={styles._tag} onClick={async () => {
               const docRef = collection(db, 'gridImages');
               // console.log(docRef); 
@@ -128,7 +131,7 @@ const Post = () => {
             </div>
           ))
         }
-        {
+        {/* {
           postTags.length === 3 ?
           <></>
           :
@@ -137,11 +140,11 @@ const Post = () => {
         }} >
           <FontAwesomeIcon icon={faPlusCircle} />
         </div>
-        }
+        } */}
       </div>
 
     </div>
   );
 }
 
-export default Post;
+export default Facebook;

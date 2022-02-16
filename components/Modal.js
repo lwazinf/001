@@ -15,9 +15,16 @@ import {
     doc, setDoc,
     serverTimestamp
 } from "firebase/firestore";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    signOut,
+    signInWithEmailAndPassword
+  } from 'firebase/auth'
 import { db } from "../firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 function Modal() {
     const { modal, setModal, images, setImages } = useContext(AppContext);
@@ -60,12 +67,14 @@ function Modal() {
                     // Handle successful uploads on complete
                     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                        const auth = getAuth()
                         resolve(downloadURL)
                         setImages(images.push(downloadURL))
                         await addDoc(collection(db, "gridImages"), {
                             dp: 'https://images.pexels.com/photos/5711040/pexels-photo-5711040.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
                             timestamp: serverTimestamp(),
-                            userName: 'Keketso Ngoma',
+                            userName: auth.currentUser.email,
+                            UID: auth.currentUser.uid,
                             imageName: fileName,
                             quote: details.quote,
                             quoteMain: details.quoteMain,
@@ -81,28 +90,33 @@ function Modal() {
     }
 
     return (
-        <div className={styles._modal} style={{ top: modal ? "150px" : "-300px", transition: modal ? 'all 0.5s' : 'all 0.3s' }}>
+        <div className={styles._modal} style={{ top: modal ? "150px" : "-400px", transition: modal ? 'all 0.5s' : 'all 0.3s' }}>
             <div className={styles._tempImg} style={{ background: `url('${images[1]}')`, backgroundSize: 'cover' }}>
             </div>
             <div onClick={() => { }} className={styles._info} >
-                <input type='text' className={styles._textInput} placeholder='quote..' onChange={(e) => {
+                <input type='text' className={styles._textInput} placeholder='Quote..' onChange={(e) => {
                     // set_tags()
                     setDetails({ quote: e.target.value, tags: details.tags, quoteMain: details.quoteMain })
                     console.log(details)
                 }} />
-                <input type='text' className={styles._textInput} placeholder='quoteMain..' onChange={(e) => {
+                <input type='text' className={styles._textInput} placeholder='Description..' onChange={(e) => {
                     // set_tags()
                     setDetails({ quote: details.quote, tags: details.tags, quoteMain: e.target.value })
                     console.log(details)
                 }} />
-                <input type='text' className={styles._textInput} placeholder='tags..' onChange={(e) => {
+                <input type='text' className={styles._textInput} placeholder='Tags [separate by space]' onChange={(e) => {
                     // set_tags()
                     setDetails({ quote: details.quote, tags: e.target.value.split(" ").slice(0, 3), quoteMain: details.quoteMain })
                     console.log(details)
                 }} />
+                <div onClick={() => { }} className={styles._buttonBox} >
+                <div onClick={() => { }} className={styles._buttonBox2} >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                </div>
                 <input type='submit' value='Upload' onClick={() => {
                     storeImage(images[0])
                 }} style={{}} className={styles._submit} />
+            </div>
             </div>
         </div>
     );

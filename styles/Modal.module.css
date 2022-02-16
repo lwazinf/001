@@ -12,9 +12,9 @@
 }
 
 ._modal {
-  height: 300px;
+  height: 385px;
   width: 500px;
-  padding: 5px;
+  padding: 0px;
 
   background: ghostwhite;
   opacity: 1;
@@ -29,53 +29,112 @@
 }
 
 ._tempImg {
-  width: 100%;
+  width: 98%;
   height: 200px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
 
   background: rgb(235, 235, 235, 0.4);
   border-radius: 6px;
 }
 
 ._info {
-  width: 100%;
-  height: 90px;
+  width: 500px;
+  /* height: 90px; */
+
+  margin-top: 4px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   /* background: red; */
 }
 
-._submit {
-  border: none;
-  
-  width: 100px;
-  height: 30px;
-  
+._buttonBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 200px;
   position: absolute;
-  bottom: 0px;
   right: 0px;
+  bottom: 0px;
+}
+
+._buttonBox2 {
+  transition: all 0.5s;
+  color: crimson;
+  width: 23px;
+  height: 23px;
+
+  opacity: 0.6;
+  
+  margin-right: 5px;
+  padding: 2px;
+
+  cursor: pointer;
+}
+
+._buttonBox2:hover {
+  transition: all 0.5s;
+  opacity: 1;
+}
+
+._submit {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+  width: 88%;
+  height: 40px;
 
   margin: 6px;
-  background: lightcyan;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  margin-left: 5px;
+
+  align-self: flex-end;
+
+  background: grey;
+
+  border-radius: 6px;
+  outline: none;
+  border: none;
+
+  color: ghostwhite;
+  font-weight: 700;
+  font-size: 15px;
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+._submit:hover {
+  background: rgb(162, 162, 162);
 }
 
 ._textInput {
-  border: none;
+  width: 98%;
+  height: 35px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4px;
+
   border-radius: 3px;
-  background-color: ghostwhite;
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
-  border: grey solid 0.05px;
-
-  width: 250px;
-  height: 25px;
-
   outline: none;
-  text-align: center;
-}
+  border: none;
 
-._textInput:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  background: ghostwhite;
+  text-align: center;
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 /* textarea:focus, input:focus{
