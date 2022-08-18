@@ -108,7 +108,7 @@ function Item(props) {
           // setPostTags(props.tags)
           setFullObject(props.fullObject)
           console.log(props.fullObject.id)
-        }else{
+        } else {
           // setPostImage('')
           // setPostDP('')
           // setPostUser('')
