@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css'
 
 import Facebook from '../components/Facebook'
-import TakeALot from '../components/TakeALot'
+// import TakeALot from '../components/TakeALot'
 import Instagram from '../components/Instagram'
 import Twitter from '../components/Twitter'
 
@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <TakeALot />
+      {/* <TakeALot /> */}
       <Twitter />
       <div className={styles._row}>
         <Facebook />
